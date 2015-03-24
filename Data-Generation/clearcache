@@ -1,0 +1,1 @@
+cat /dev/zero > /tmp/cache.cleaner ; rm -f /tmp/cache.cleaner
