@@ -1,0 +1,10 @@
+#! /bin/bash
+DUMP_FILES_PATH=/var/work/hkaradi1/gInstall/ganglia/rrds/HadoopCluster/node5C/
+RDD_TOOL_PATH=/var/work/hkaradi1/gInstall/rrdtool/bin/rrdtool
+OUTPUT_PATH=~/output_files/node5C/
+for file in `ls -1 $DUMP_FILES_PATH*.rrd`
+do
+base_file=`echo $(basename "$file")`
+base_file+=".xml"
+$RDD_TOOL_PATH dump $file > $OUTPUT_PATH$base_file
+done

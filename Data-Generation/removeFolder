@@ -1,0 +1,13 @@
+#!/usr/bin/env python
+import subprocess as sb
+
+def generate(interval):
+	folderlist=[]
+	liste = sb.check_output("/var/work/hkaradi1/hadoopAndCassandra/hadoop-1.1.1/bin/hadoop fs -ls /HiBench",shell=True)
+	for line in liste.readlines():
+		arr=line.split()[-1]
+   		folderlist.append(arr+"/Output")
+   	for item in folderlist:
+   		out = sb.check_output("/var/work/hkaradi1/hadoopAndCassandra/hadoop-1.1.1/bin/hadoop fs -rmr "+item,shell=True)
+
+generate()
