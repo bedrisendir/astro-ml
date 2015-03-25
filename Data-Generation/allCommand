@@ -1,0 +1,12 @@
+#du -h -s *
+#echo "disk usage"
+#cat /dev/zero > /tmp/cache.cleaner ; rm -f /tmp/cache.cleaner
+#echo "cache cleaner"
+rm -r /tmp/*hkaradi1*
+echo "cleaned temp"
+#rm -r /var/work/hkaradi1/hadoop-tmp/*
+echo "cleaned hadoop temp"
+rm -r /var/work/hkaradi1/hadoopAndCassandra/hadoop-1.1.1/logs/*
+echo "cleaned logs"
+/var/work/hkaradi1/hadoopAndCassandra/hadoop-1.1.1/bin/hadoop namenode -format
+echo "Formatted"
