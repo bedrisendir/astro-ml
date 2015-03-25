@@ -1,3 +1,4 @@
+DATA PREP METHODS
 -Check for NaN inputs. Copy from previous data point if available. Each data point ( 15 sec )
 
 -Pre-define threshold for each column. (very small number)
@@ -9,3 +10,4 @@ Find highly co-related columns.
 We should expect something like this after running PCA.
 PCA also chooses the best combination from a set of possible linear functions that
 retains maximu m variance of our data. In our case,the initial 163 features were reduced to around 50 features after PCA.
+
