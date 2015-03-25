@@ -1,0 +1,98 @@
+boottime 
+Number of seconds since system last got booted.
+
+cpu_num 
+Number of CPUs in the system.
+
+cpu_speed 
+Speed of the CPUs in the system (not guaranteed accurate).
+
+cpu_user 
+Percentage of CPU cycles spent in user mode.
+
+cpu_system 
+Percentage of CPU cycles spent in non-user mode.
+
+cpu_nice 
+Percentage of CPU cycles spent on nice processes.
+
+cpu_idle 
+Percentage of CPU cycles spent heating your machine room.
+
+cpu_aidle 
+Percentage of CPU cycles spent idle since last boot (Linux)
+
+gexec 
+Is the Ganglia Execution environment running? (Linux)
+
+heartbeat 
+Google search for phrase: "machine that goes ping"
+
+load_one 
+Reported system load, averaged over one minute.
+
+load_five 
+Reported system load, averaged over five minutes.
+
+load_fifteen 
+Reported system load, averaged over fifteen minutes.
+
+location 
+Location of the rebel base.
+
+machine_type 
+The CPU architecture on which Ganglia is running.
+
+mem_buffers 
+Amount of memory allocated to system buffers (Linux)
+
+mem_cached 
+Amount of memory allocated to cached data (Linux)
+
+mem_shared 
+Amount of memory occupied by processes.
+
+mem_total 
+Total amount of physical memory.
+
+os_name 
+The name of the operating system on which blah blah blah.
+
+os_release 
+The version of the operating system / kernel etc.
+
+proc_run 
+Number of running processes (not on Solaris, IRIX or OSF)
+
+proc_total 
+Number of total resident processes (not on OSF).
+
+swap_free 
+Amount of free swap space.
+
+swap_total 
+Amount of total swap space.
+
+sys_clock 
+Number of seconds since January 1st, 1970, according to the local system clock.
+
+bytes_in 
+Number of bytes read from all non-loopback interfaces.
+
+bytes_out 
+Number of bytes written to all non-loopback interfaces.
+
+pkts_in 
+Number of packets read from all non-loopback interfaces.
+
+pkts_out 
+Number of packets written to all non-loopback interfaces.
+
+disk_total 
+Total capacity on the fullest local disk partition.
+
+disk_free 
+Total free space on the fullest local disk partition.
+
+part_max_used 
+Name of the partition used in disk_total/disk_free.
