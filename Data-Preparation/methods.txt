@@ -11,3 +11,38 @@ We should expect something like this after running PCA.
 PCA also chooses the best combination from a set of possible linear functions that
 retains maximu m variance of our data. In our case,the initial 163 features were reduced to around 50 features after PCA.
 
+2 steps:
+1- Prediction. Traning data --> history of Cluster incidents (ganglia)
+  Then feed the model for real-time testing. 
+  The testing and training data have similar steps as follows:
+    a. Data Collection
+	system-level and Hadoop metrics (we have)
+	In the paper, they have 163 metrics with at minute intervals (15 sec. in ours)
+	They choose one-hour data before a problem is detected as abnormal training dataset.
+	So traning dataset has anomalous behavior. Then they choose five-hour data after the node was restored as normal data
+	(We dont have any anomalous behavior in our dataset....)
+    b. Data Preprocessing
+	Dataset should be tabular format (column and rows with timestamp, we have)
+	The technique that they use doesn't allow NaN data, so they copy data from the last available time
+	For some metrics, data for the whole five-hour period of time are empty. They fill out those empty data with 
+	  a constant value, so that it is ignored at a later time during training phase/
+	
+	Compute standard deviation for each column. If the standard deviation is less than a pre-defined threshold,
+	  generally a very small number, we remove that column as input to the computation for our model.
+	After removing these low-variance columns, they apply Principal Component Analysis(PCA) for future reduction 
+	(http://sebastianraschka.com/Articles/2014_pca_step_by_step.html)
+	(http://scikit-learn.org/stable/modules/generated/sklearn.decomposition.PCA.html)
+
+	For example, hadoop.app.cpuUser and hadoop.app.cpuNice are highly correlated, Appyling PCA, they can find linear
+	  combination of correlated features. PCA also chooses the best combination from a set of possible linear functions
+	  that retains maximum variance of our data. So 163 features reduced to 50 features after PCA
+
+    c. Multivarite Gaussian Distribution
+	For building a model by using training data set.
+	Calculate mean and covariance of training data set so that they can compute probablity using 
+	  a multivariate Guassian Function (numpy.random.multivariate_normal or scipy.stats.multivariate_normal)
+	(http://docs.scipy.org/doc/numpy/reference/generated/numpy.random.multivariate_normal.html)
+	takes mean and covariance as an argument we need to predefine it.
+
+    d. Cut-off threshold to differentiate normal and abnormal
+	
