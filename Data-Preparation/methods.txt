@@ -25,7 +25,7 @@ retains maximu m variance of our data. In our case,the initial 163 features were
 	Dataset should be tabular format (column and rows with timestamp, we have)
 	The technique that they use doesn't allow NaN data, so they copy data from the last available time
 	For some metrics, data for the whole five-hour period of time are empty. They fill out those empty data with 
-	  a constant value, so that it is ignored at a later time during training phase/
+	  a constant value, so that it is ignored at a later time during training phase.
 	
 	Compute standard deviation for each column. If the standard deviation is less than a pre-defined threshold,
 	  generally a very small number, we remove that column as input to the computation for our model.
@@ -43,6 +43,37 @@ retains maximu m variance of our data. In our case,the initial 163 features were
 	  a multivariate Guassian Function (numpy.random.multivariate_normal or scipy.stats.multivariate_normal)
 	(http://docs.scipy.org/doc/numpy/reference/generated/numpy.random.multivariate_normal.html)
 	takes mean and covariance as an argument we need to predefine it.
+	
+	Gaussian Distributed Function
+	(https://docs.python.org/2/library/random.html) Generate random numbers
+	(http://docs.scipy.org/doc/numpy/reference/generated/numpy.random.normal.html) random samples from a normal(Gaussian)
+	  distribution
 
     d. Cut-off threshold to differentiate normal and abnormal
+	We want to find out which data nodes fall within an abnormal region from Gaussian Distribution Function, so that
+	  we can mark them as anomalous nodes. In the system, the probability for a data point can be very small, even for
+	  a normal data node, and potentially be classified as abnormal, which may also indicate false-positives. They seek to
+	  find a THRESHOLD to reduce the false-positives even more and also maximize true anomalies or true-positives.
 	
+	d.1. Matthews Correlation Coefficient (MCC)
+	  We need to find True-positives and negatives and also false-positives and negatives in each column cause 
+	    formula needs them
+	  (http://blog.nextgenetics.net/?e=47)
+	  (http://en.wikipedia.org/wiki/Matthews_correlation_coefficient)
+	
+     	d.2. Half total error rate (AAcc)
+
+    e. Anomaly score calculation
+	Function to calculate anomaly score between 0 and 10. 10 is the highest anomaly node.
+	They pick two threshold, a soft and hard. The thresholds are determined from their training dataset. How???
+
+    f. Determining features that contributes to anomaly
+	Single-variate Gaussian Distribution to deduce (sonuc cikarmak) this info (after detect anomaly node)
+	Compute probability value for each of the feauteres seperately and factorize them to determine the final probability.
+	As the data node is anomalous, the factorized value should be very small and there must be features with significantly
+	  smaller individual probabilities than others, and those contribute to lower the final probability.
+	We can select these features with lower individual probabilities and sort them in ascending order.
+	Find the five top five features provide a good indication of the root cause for the anomaly, and call them "Influencers"
+	Once we calculate the anomaly score and get the list of influencers as descried above, we pass this information to the
+	  scheduler!!..
+	  
