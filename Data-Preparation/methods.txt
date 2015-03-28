@@ -77,3 +77,7 @@ retains maximu m variance of our data. In our case,the initial 163 features were
 	Once we calculate the anomaly score and get the list of influencers as descried above, we pass this information to the
 	  scheduler!!..
 	  
+	  
+2- Scheduling
+	
+		
