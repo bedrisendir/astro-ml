@@ -6,4 +6,14 @@
 
 #copy previous value if NaNs are rare
 
+def handle(dataset):
+	kv={}
+	for column in dataset:
+		count=0
+		for data in dataset[column]:
+			#if column == "ugi.ugi.loginFailure_avg_time":
+			#	print data
+			if data == "NaN":
+				count+=1
 
+		kv[column]=count
