@@ -1,21 +1,32 @@
 #remove non changing metrics
-def remove_constant(list):
-	array_length = len(list)
-	threshold = sum(list)/len(list)
-	print array_length
-	print threshold
-	bigger=[]
-	smallerAndEqual=[]
-	for item in list:		
-		if item <= threshold:
-			smallerAndEqual.append(item)
-		else:
-			bigger.append(item)
+import pandas as pd
+def remove_constant(dataframe):
+	columnNames=[]
+	count=0
+	smallCount=0
+	titles = dataframe.columns.tolist()
+	titles = titles[:-1]
+	for title in titles:
+		count +=1
+                if count == 1 or count == 2 or count == 3:
+                        continue
+		
+		l = dataframe[title]
+		l = [float(i) for i in l]
+		array_length = len(l)
+		threshold = sum(l)/len(l)
+		bigger=[]
+		smallerAndEqual=[]
+		smallCount=0
+		for item in l:		
+			if item <= threshold:
+				smallCount +=1
 
-	print len(smallerAndEqual)
-	print len(bigger)
-	if len(smallerAndEqual) == len(list):
-		print "All data are equal"
-
-remove_constant([1,2,3,4,5])
-remove_constant([1,1,1,1,1])
+		#print len(smallerAndEqual)
+		#print len(bigger)
+		if smallCount == len(l):
+			print "All data are equal"
+			print title
+			columnNames.append(title)
+filename = "~/Downloads/master_dataset.csv"
+remove_constant(pd.read_csv(filename))
