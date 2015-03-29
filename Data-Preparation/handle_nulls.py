@@ -15,5 +15,9 @@ def handle(dataset):
 			#	print data
 			if data == "NaN":
 				count+=1
-
 		kv[column]=count
+
+	for key in kv:
+		if kv[key] != 0:
+			print key , " " , kv[key]
+	
