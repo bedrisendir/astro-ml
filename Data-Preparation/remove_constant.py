@@ -10,7 +10,6 @@ def remove_constant(dataframe):
 		count +=1
                 if count == 1 or count == 2 or count == 3:
                         continue
-		
 		l = dataframe[title]
 		l = [float(i) for i in l]
 		array_length = len(l)
