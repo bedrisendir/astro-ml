@@ -2,15 +2,21 @@ import handle_nulls
 import scientific_to_float
 import remove_constant
 import pandas as pd
+import writetoFile
 
-filename="slaves_dataset.csv"
-dataset=pd.read_csv(filename,sep='\t',dtype=str,keep_default_na=False)
+filename="node43.csv"
+dataset=pd.read_csv(filename,dtype=str,keep_default_na=False)
+print len(list(dataset.columns.values))
 
-#scientific format
-dataset=scientific_to_float(dataset)
 
-#collect nodes columns to delete
 dataset=handle_nulls.handle(dataset)
+print len(list(dataset.columns.values))
 
-#remove constant
-dataset=remove_constant(dataset)
+
+dataset=scientific_to_float.handle(dataset)
+print len(list(dataset.columns.values))
+
+
+dataset=remove_constant.remove_constant(dataset)
+print len(list(dataset.columns.values))
+writetoFile.write(dataset)

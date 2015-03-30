@@ -24,13 +24,13 @@ def remove_constant(dataframe):
 		#print len(smallerAndEqual)
 		#print len(bigger)
 		if smallCount == len(l):
-			print "All data are equal"
-			print title
+			#print "All data are equal"
+			#print title
 			columnNames.append(title)
 	
-
+	print "DeleteList:",columnNames
 	for item in columnNames:
-		del dataset[item]
+		del dataframe[item]
 
 	
 	return dataframe

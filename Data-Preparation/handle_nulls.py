@@ -15,13 +15,21 @@ def handle(dataset):
 				count+=1
 		kv[column]=count
 	ky=[]
-	for key in kv:
-		if kv[key] < len(dataset[key])*15/100:
+	mykeys=kv.keys()
+	#print len(mykeys)
+	for key in mykeys:
+		#print "-->",len(dataset[key])*15/100
+		#if kv[key]>0:
+		#	print kv[key]
+		if kv[key] > len(dataset[key])*5/100:
 			ky.append(key)
 			del kv[key]
-	
+	#print len(ky)
+	#print "check ",len(list(dataset.columns.values))
+	print "DeleteList:",ky
 	for key in ky:
 		del dataset[key]
 	
+	#print "check ",len(list(dataset.columns.values))
 	dataset.fillna(0.0)	
 	return dataset
