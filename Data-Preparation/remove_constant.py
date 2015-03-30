@@ -27,5 +27,10 @@ def remove_constant(dataframe):
 			print "All data are equal"
 			print title
 			columnNames.append(title)
-filename = "~/Downloads/master_dataset.csv"
-remove_constant(pd.read_csv(filename))
+	
+
+	for item in columnNames:
+		del dataset[item]
+
+	
+	return dataframe

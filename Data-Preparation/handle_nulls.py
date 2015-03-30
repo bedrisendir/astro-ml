@@ -11,13 +11,17 @@ def handle(dataset):
 	for column in dataset:
 		count=0
 		for data in dataset[column]:
-			#if column == "ugi.ugi.loginFailure_avg_time":
-			#	print data
 			if data == "NaN":
 				count+=1
 		kv[column]=count
-
+	ky=[]
 	for key in kv:
-		if kv[key] != 0:
-			print key , " " , kv[key]
+		if kv[key] < len(dataset[key])*15/100:
+			ky.append(key)
+			del kv[key]
 	
+	for key in ky:
+		del dataset[key]
+	
+	dataset.fillna(0.0)	
+	return dataset
