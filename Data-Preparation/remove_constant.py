@@ -8,7 +8,7 @@ def remove_constant(dataframe):
 	titles = titles[:-1]
 	for title in titles:
 		count +=1
-                if count == 1 or count == 2 or count == 3:
+                if count == 1 or count == 2:
                         continue
 		l = dataframe[title]
 		l = [float(i) for i in l]
