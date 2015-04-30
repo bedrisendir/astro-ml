@@ -81,3 +81,6 @@ retains maximu m variance of our data. In our case,the initial 163 features were
 2- Scheduling
 	
 		
+--------
+Link for anomaly detection
+https://github.com/twitter/AnomalyDetection/blob/master/R/ts_anom_detection.R
