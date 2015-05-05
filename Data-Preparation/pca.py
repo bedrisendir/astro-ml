@@ -36,23 +36,26 @@ ll2[np.isnan(ll2)]=0
 numberOfDimension = 129
 
 # 1
-all_samples = np.concatenate((ll, ll2), axis=1)
-
+#all_samples = np.concatenate((ll, ll2), axis=1)
+all_samples = ll2
+'''
 # 2
 meanList=[]
 for i in range(0, numberOfDimension):
 	meanList.append(all_samples[i,:])
+	#meanList.append(all_samples[i:i])
 mean_vector = np.array(meanList)
 
 # 3 a
-#print all_samples.shape[1]
 scatter_matrix = np.zeros((numberOfDimension, numberOfDimension))
+#for i in range(all_samples.shape[1]):
 for i in range(all_samples.shape[1]):
     if(i % 100 == 0):
     	print i
+    #scatter_matrix += (all_samples[:,i].reshape(numberOfDimension,1)\
+    	#- mean_vector).dot((all_samples[:,i].reshape(numberOfDimension,1) - mean_vector).T)
     scatter_matrix += (all_samples[:,i].reshape(numberOfDimension,1)\
-         - mean_vector).dot((all_samples[:,i].reshape(numberOfDimension,1) - mean_vector).T)
-
+	- mean_vector).dot((all_samples[:,i].reshape(numberOfDimension,1) - mean_vector).T)
 # 3 b
 cov_mat = np.cov(meanList)
 
@@ -72,11 +75,12 @@ for i in range(len(eig_val_sc)):
 
 
 print "COMPONENT COUNT ", componentCount
-
-componentCount = 67
+'''
+componentCount = 72
+#componentCount = 67
 sklearn_pca = sklearnPCA(n_components=componentCount)
 sklearn_transf = sklearn_pca.fit_transform(all_samples.T)
 df= pd.DataFrame(data=sklearn_transf)
-df.to_csv("result.csv")
+df.to_csv("result2.csv")
 
 #print sklearn_transf
