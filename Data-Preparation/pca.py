@@ -19,25 +19,25 @@ def pcaData(dataframe):
 
         return ll
 
-filename = "~/python/node43.csv"
+filename = "~/Desktop/astro-ml/Data-Preparation/testdata/node49.csv"
 filename1 = "~/python/node49.csv"
 #filename2 = "~/python/node49.csv"
 
 ll = pcaData(pd.read_csv(filename))
-ll2  = pcaData(pd.read_csv(filename1))
+#ll2  = pcaData(pd.read_csv(filename1))
 #ll3 = pcaData(pd.read_csv(filename2))
 ll = np.array(ll)
-ll2 = np.array(ll2)
+#ll2 = np.array(ll2)
 #ll3 = np.array(ll3)
 ll[np.isnan(ll)]=0
-ll2[np.isnan(ll2)]=0
+#ll2[np.isnan(ll2)]=0
 #ll3[np.isnan(ll3)]=0
 
 numberOfDimension = 129
 
 # 1
 #all_samples = np.concatenate((ll, ll2), axis=1)
-all_samples = ll2
+all_samples = ll
 '''
 # 2
 meanList=[]
@@ -76,11 +76,11 @@ for i in range(len(eig_val_sc)):
 
 print "COMPONENT COUNT ", componentCount
 '''
-componentCount = 72
-#componentCount = 67
+#componentCount = 72
+componentCount = 67
 sklearn_pca = sklearnPCA(n_components=componentCount)
 sklearn_transf = sklearn_pca.fit_transform(all_samples.T)
 df= pd.DataFrame(data=sklearn_transf)
-df.to_csv("result2.csv")
+df.to_csv("node49PCA.csv")
 
 #print sklearn_transf
